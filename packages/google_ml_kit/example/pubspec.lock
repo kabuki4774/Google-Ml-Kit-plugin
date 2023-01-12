@@ -21,35 +21,35 @@ packages:
       name: camera
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.0+4"
+    version: "0.10.1"
   camera_android:
     dependency: transitive
     description:
       name: camera_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.10.0+4"
+    version: "0.10.2+1"
   camera_avfoundation:
     dependency: transitive
     description:
       name: camera_avfoundation
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.8+6"
+    version: "0.9.10+1"
   camera_platform_interface:
     dependency: transitive
     description:
       name: camera_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.3.0"
+    version: "2.3.3"
   camera_web:
     dependency: transitive
     description:
       name: camera_web
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0+1"
+    version: "0.3.1"
   characters:
     dependency: transitive
     description:
@@ -128,97 +128,34 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  google_mlkit_barcode_scanning:
-    dependency: "direct main"
-    description:
-      path: "../../google_mlkit_barcode_scanning"
-      relative: true
-    source: path
-    version: "0.5.0"
   google_mlkit_commons:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: google_mlkit_commons
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.0"
-  google_mlkit_digital_ink_recognition:
-    dependency: "direct main"
-    description:
-      path: "../../google_mlkit_digital_ink_recognition"
-      relative: true
-    source: path
-    version: "0.6.0"
-  google_mlkit_entity_extraction:
-    dependency: "direct main"
-    description:
-      path: "../../google_mlkit_entity_extraction"
-      relative: true
-    source: path
-    version: "0.6.0"
   google_mlkit_face_detection:
     dependency: "direct main"
     description:
-      path: "../../google_mlkit_face_detection"
-      relative: true
-    source: path
+      name: google_mlkit_face_detection
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.5.0"
   google_mlkit_image_labeling:
     dependency: "direct main"
     description:
-      path: "../../google_mlkit_image_labeling"
-      relative: true
-    source: path
-    version: "0.5.0"
-  google_mlkit_language_id:
-    dependency: "direct main"
-    description:
-      path: "../../google_mlkit_language_id"
-      relative: true
-    source: path
+      name: google_mlkit_image_labeling
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.5.0"
   google_mlkit_object_detection:
     dependency: "direct main"
     description:
-      path: "../../google_mlkit_object_detection"
-      relative: true
-    source: path
+      name: google_mlkit_object_detection
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.6.0"
-  google_mlkit_pose_detection:
-    dependency: "direct main"
-    description:
-      path: "../../google_mlkit_pose_detection"
-      relative: true
-    source: path
-    version: "0.5.0"
-  google_mlkit_selfie_segmentation:
-    dependency: "direct main"
-    description:
-      path: "../../google_mlkit_selfie_segmentation"
-      relative: true
-    source: path
-    version: "0.2.0"
-  google_mlkit_smart_reply:
-    dependency: "direct main"
-    description:
-      path: "../../google_mlkit_smart_reply"
-      relative: true
-    source: path
-    version: "0.5.0"
-  google_mlkit_text_recognition:
-    dependency: "direct main"
-    description:
-      path: "../../google_mlkit_text_recognition"
-      relative: true
-    source: path
-    version: "0.5.0"
-  google_mlkit_translation:
-    dependency: "direct main"
-    description:
-      path: "../../google_mlkit_translation"
-      relative: true
-    source: path
-    version: "0.5.0"
   http:
     dependency: transitive
     description:
@@ -246,7 +183,7 @@ packages:
       name: image_picker_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.5+3"
+    version: "0.8.5+4"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -260,7 +197,7 @@ packages:
       name: image_picker_ios
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.8.6+1"
+    version: "0.8.6+5"
   image_picker_platform_interface:
     dependency: transitive
     description:
@@ -323,7 +260,7 @@ packages:
       name: path_provider_android
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.21"
+    version: "2.0.22"
   path_provider_ios:
     dependency: transitive
     description:
@@ -386,7 +323,7 @@ packages:
       name: quiver
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "3.2.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -461,7 +398,7 @@ packages:
       name: win32
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.0.1"
+    version: "3.1.3"
   xdg_directories:
     dependency: transitive
     description:

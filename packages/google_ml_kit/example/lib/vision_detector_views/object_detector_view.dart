@@ -7,7 +7,7 @@ import 'package:google_mlkit_object_detection/google_mlkit_object_detection.dart
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
-import 'camera_view.dart';
+import 'attention_view.dart';
 import 'painters/object_detector_painter.dart';
 
 class ObjectDetectorView extends StatefulWidget {
@@ -21,11 +21,12 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
   bool _isBusy = false;
   CustomPaint? _customPaint;
   String? _text;
+  dynamic listName = [];
+  dynamic listNameTemp = [];
 
   @override
   void initState() {
     super.initState();
-
     _initializeDetector(DetectionMode.stream);
   }
 
@@ -38,10 +39,10 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
 
   @override
   Widget build(BuildContext context) {
-    return CameraView(
+    return UserAttnView(
       title: 'Object Detector',
-      customPaint: _customPaint,
       text: _text,
+      labels: listName,
       onImage: (inputImage) {
         processImage(inputImage);
       },
@@ -51,38 +52,31 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
   }
 
   void _onScreenModeChanged(ScreenMode mode) {
-    switch (mode) {
-      case ScreenMode.gallery:
-        _initializeDetector(DetectionMode.single);
-        return;
-
-      case ScreenMode.liveFeed:
-        _initializeDetector(DetectionMode.stream);
-        return;
-    }
+    _initializeDetector(DetectionMode.stream);
+    return;
   }
 
   void _initializeDetector(DetectionMode mode) async {
     print('Set detector in mode: $mode');
 
     // uncomment next lines if you want to use the default model
-    // final options = ObjectDetectorOptions(
-    //     mode: mode,
-    //     classifyObjects: true,
-    //     multipleObjects: true);
-    // _objectDetector = ObjectDetector(options: options);
+    final options = ObjectDetectorOptions(
+        mode: mode,
+        classifyObjects: true,
+        multipleObjects: true);
+    _objectDetector = ObjectDetector(options: options);
 
     // uncomment next lines if you want to use a local model
     // make sure to add tflite model to assets/ml
-    final path = 'assets/ml/object_labeler.tflite';
-    final modelPath = await _getModel(path);
-    final options = LocalObjectDetectorOptions(
-      mode: mode,
-      modelPath: modelPath,
-      classifyObjects: true,
-      multipleObjects: true,
-    );
-    _objectDetector = ObjectDetector(options: options);
+    // final path = 'assets/ml/object_labeler.tflite';
+    // final modelPath = await _getModel(path);
+    // final options = LocalObjectDetectorOptions(
+    //   mode: mode,
+    //   modelPath: modelPath,
+    //   classifyObjects: true,
+    //   multipleObjects: true,
+    // );
+    // _objectDetector = ObjectDetector(options: options);
 
     // uncomment next lines if you want to use a remote model
     // make sure to add model to firebase
@@ -108,24 +102,52 @@ class _ObjectDetectorView extends State<ObjectDetectorView> {
     setState(() {
       _text = '';
     });
-    final objects = await _objectDetector.processImage(inputImage);
-    if (inputImage.inputImageData?.size != null &&
-        inputImage.inputImageData?.imageRotation != null) {
-      final painter = ObjectDetectorPainter(
-          objects,
-          inputImage.inputImageData!.imageRotation,
-          inputImage.inputImageData!.size);
-      _customPaint = CustomPaint(painter: painter);
-    } else {
-      String text = 'Objects found: ${objects.length}\n\n';
-      for (final object in objects) {
-        text +=
-            'Object:  trackingId: ${object.trackingId} - ${object.labels.map((e) => e.text)}\n\n';
+    listNameTemp = [];
+
+    // final objects = await _objectDetector.processImage(inputImage);
+    // if (inputImage.inputImageData?.size != null &&
+    //     inputImage.inputImageData?.imageRotation != null) {
+    //   final painter = ObjectDetectorPainter(
+    //       objects,
+    //       inputImage.inputImageData!.imageRotation,
+    //       inputImage.inputImageData!.size);
+    //   _customPaint = CustomPaint(painter: painter);
+    // } else {
+    //   String text = 'Objects found: ${objects.length}\n\n';
+    //   for (final object in objects) {
+    //     text +=
+    //     'Object:  trackingId: ${object.trackingId} - ${object.labels.map((e) => e.text)}\n\n';
+    //   }
+    // _text = text;
+    // _customPaint = null;
+    // }
+    final List<DetectedObject> objects = await _objectDetector.processImage(inputImage);
+
+    for(final DetectedObject detectedObject in objects){
+      for(final Label label in detectedObject.labels){
+        print('${label.text} ${label.confidence}');
+        if(listName.contains(label.text)){
+        } else {
+          listName.add(label.text);
+        }
       }
-      _text = text;
-      // TODO: set _customPaint to draw boundingRect on top of image
-      _customPaint = null;
     }
+
+    String text = 'Objects found: ${objects.length}\n\n';
+      // for (final object in objects) {
+      //   text +=
+      //   'Object:  ${object.labels.map((e) => e.text)}\n\n';
+      //   listNameTemp.add(object.labels.map((e) => e.text));
+      // }
+      // for (final item in listNameTemp){
+      //   if(listName.contains(item)){
+      //     print(item);
+      //   } else {
+      //     listName.add(item);
+      //   }
+      // }
+      _text = text;
+      print(listName);
     _isBusy = false;
     if (mounted) {
       setState(() {});

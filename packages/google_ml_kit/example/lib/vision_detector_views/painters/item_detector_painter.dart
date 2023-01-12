@@ -3,8 +3,8 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_image_labeling/google_mlkit_image_labeling.dart';
 
-class LabelDetectorPainter extends CustomPainter {
-  LabelDetectorPainter(this.labels);
+class ItemDetectorPainter extends CustomPainter {
+  ItemDetectorPainter(this.labels);
 
   final List<ImageLabel> labels;
 
@@ -34,7 +34,7 @@ class LabelDetectorPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(LabelDetectorPainter oldDelegate) {
+  bool shouldRepaint(ItemDetectorPainter oldDelegate) {
     return oldDelegate.labels != labels;
   }
 }

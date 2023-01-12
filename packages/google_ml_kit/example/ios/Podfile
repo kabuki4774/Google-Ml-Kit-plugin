@@ -10,10 +10,16 @@ project 'Runner', {
 }
 
 # Add language package you need to use
-pod 'GoogleMLKit/TextRecognitionChinese', '~> 3.2.0'
+#pod 'GoogleMLKit/TextRecognitionChinese', '~> 3.2.0'
 # pod 'GoogleMLKit/TextRecognitionDevanagari', '~> 3.2.0'
 # pod 'GoogleMLKit/TextRecognitionJapanese', '~> 3.2.0'
 # pod 'GoogleMLKit/TextRecognitionKorean', '~> 3.2.0'
+
+use_frameworks!
+
+pod 'GoogleMLKit/FaceDetection', '3.2.0'
+pod 'GoogleMLKit/ImageLabeling', '3.2.0'
+pod 'GoogleMLKit/ObjectDetection', '3.2.0'
 
 def flutter_root
   generated_xcode_build_settings_path = File.expand_path(File.join('..', 'Flutter', 'Generated.xcconfig'), __FILE__)
@@ -36,8 +42,8 @@ target 'Runner' do
   flutter_install_all_ios_pods File.dirname(File.realpath(__FILE__))
 end
 
-# add this line:
-$iOSVersion = '10.0'
+# # add this line:
+$iOSVersion = '11.0'
 
 post_install do |installer|
   # add these lines:
